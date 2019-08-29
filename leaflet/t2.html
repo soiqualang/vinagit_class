@@ -1,0 +1,62 @@
+<html>
+<head>
+<title>Hoc leaflet</title>
+    <link rel="stylesheet" href="lib/leaflet.css">    
+    <script src="lib/leaflet.js"></script>
+    <style>
+        #map{
+            height:500px;
+            width:800px;
+            background-color: #00800061;
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+    <script>
+        var map = L.map('map', {
+            center: [16.1156517,108.3142188],
+            zoom: 5
+        });
+        
+        var osm_url='http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+        
+        var osmlayer=new L.TileLayer(
+            osm_url,
+            {
+                attribution: 'Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
+            }
+        );
+        
+        
+        
+        var mbUrl = 'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw';
+        
+        var mapboxlayer=new L.TileLayer(
+            mbUrl,
+            {
+                id: 'mapbox.light',
+                attribution: 'Mapbox contributors'
+            }
+        );
+        
+        mapboxlayer.addTo(map);        
+        //map.addLayer(mapboxlayer);
+        
+        var vinagit_wms='http://data.vinagit.com:8080/geoserver/atlas_vietnam/wms?';
+        
+        var vn_tinh_hsts = L.tileLayer.wms(vinagit_wms, {
+            layers: 'atlas_vietnam:1vn_tinh_hsts',
+            tiled: true,
+            format: 'image/png',
+            transparent: true,
+            //maxZoom: 14,
+            //minZoom: 0,
+            //continuousWorld: true
+        }).addTo(map);
+        
+        
+        
+    </script>
+</body>
+</html>
