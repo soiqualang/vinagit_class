@@ -1,0 +1,92 @@
+<html>
+  <head>
+    <title>Javascript</title>
+    <script type="text/javascript">
+        var tieude='VianaGIT class';
+        var ten='Long';
+        var tuoi=30;
+        var docthan=true;
+        lophoc='Vinagit class';
+        //comment 1 dong
+        /*
+        comment 1 doan
+        */
+        //alert('Long la toi');
+        var txt_show='Ten: '+ten+' \n Tuoi: '+tuoi;
+        //alert(txt_show);
+        
+        //Toan tu
+        var a=10;
+        var b=5;        
+        //var tong=a+b;
+        
+        //alert(a/b);
+        //alert(tong);
+        
+        //document.write(b/a);
+        //var dientich=(a+b)*2;
+        
+        
+        
+    </script>
+  </head>
+  <body>
+    <h1>Javascript</h1>
+    <script>
+        //document.write('<h2><i>xin chao</i></h2><br><h1>Toi la Long</h1>');
+        //document.write('Dien tich: '+dientich);
+    </script>    
+    <form>
+        chieu dai: <input type="text" id="chieudai" value=""><br>
+        chieu rong: <input type="text" id="chieurong" value=""><br>
+        <input type="button" value="Tinh dien tich" onclick="tinh_dientich();"><br>
+        
+        <div id="chuvi"></div>
+    </form>
+    
+    <input type="button" value="Show tieu de" onclick="gettitle();"><br>
+    <script>
+    
+    function getval(id){
+        var giatri=document.getElementById(id).value;
+        return giatri;
+    }    
+    
+    function objinner(id){
+        var giatri=document.getElementById(id).innerHTML;
+        return giatri;
+    }
+    
+    function getobj(id){
+        var giatri=document.getElementById(id);
+        return giatri;
+    }
+    
+    function gettitle(){
+        alert(tieude);
+    }
+        
+    //Ham tinh dien tich    
+    function tinh_dientich(){
+        //noi dung cua ham
+        //lay gia tri tu form
+        var chieudai=getval("chieudai");
+        var chieurong=getval("chieurong");
+        
+        //tinh chu vi
+        var chuvi=(eval(chieudai)+eval(chieurong))*2;
+        //var chuvi=(chieudai+chieurong)*2;
+        
+        //gan ket qua
+        //getobj("chuvi").innerHTML=chuvi;
+        objinner("chuvi")=chuvi;
+    }
+    
+    
+    //alert(chieudai);
+    
+    //console.log(chieudai.value);
+        
+    </script>
+  </body>
+</html>

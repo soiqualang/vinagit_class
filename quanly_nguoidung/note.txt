@@ -1,0 +1,26 @@
+Tạo Database
+	add postgis functions
+	Tạo bảng người dùng
+Import dữ liệu không gian
+	Dữ liệu Vietnam
+	Tạo connect qgis to postgis
+	Import data
+	Kiểm tra
+Xây dựng ứng dụng quản lý dữ liệu
+	Xây dựng giao diện
+		Quản lý danh sách (select)
+		Thêm (Insert)
+		Sửa (Update)
+		Xóa (Delete)
+	Xây dựng chức năng
+		Thêm người dùng
+		Show danh sách người dùng
+		Update người dùng
+
+
+Note:
+Khi phải khai báo config nhiều lần thì trong php cho phép chúng ta tạo 1 file config rồi include vô các file khác.
+
+Để update hoặc delete 1 record, chúng ta cần id của record đó để tránh update hoặc xóa toàn bộ table
+
+Chúng ta cần textbox id để nhận id người dùng, chuyển cho trang xử lý để update đúng record mong muốn
