@@ -1,0 +1,84 @@
+<html>
+  <head>
+    <title>Javascript</title>
+    <script type="text/javascript">
+        function kiemtra(num){
+            //kiem tra so lon hon 5
+            if(num>5){
+                alert('So lon hon 5');
+            }else if(num==5){
+                /*
+                bang nhau: ==
+                khac nhau: !=
+                be hon: <
+                lon hon: >
+                */
+                alert('So bang 5');
+            }else{
+                alert('So be hon 5');
+            }
+        }
+        
+        var arr1=['Ho Chi Minh','Bien Hoa','Thu Dau Mot','Hai Duong'];
+        
+        var opt='<select>';
+        /*
+        for(i=1;i<=63;i++){
+            opt+='<option>tinh thanh '+i+'</option>';
+            //opt=opt+'<option>tinh thanh '+i+'</option>';
+            //console.log(opt);
+        }
+        */
+        
+        for(i=0;i<arr1.length;i++){
+            //console.log(arr1[i]);
+            opt+='<option>'+arr1[i]+'</option>';
+        }
+        
+        opt+='</select>';
+        
+        //mang
+        
+        
+
+    </script>
+  </head>
+  <body>
+    <h1>Javascript</h1>
+    <form>
+        <input type="number" id="num">
+        <br><br>
+        <!--<select>
+            <option>tinh thanh 1</option>
+            <option>tinh thanh 2</option>
+            <option>tinh thanh 3</option>
+            <option>tinh thanh 4</option>
+        </select>-->
+        <div id="tinhthanh"></div>
+        <hr>
+        <input type="button" value="Kiem tra" onclick="kiemtra(getval('num'));"><br>
+    </form>
+    
+    
+    <script>
+    
+    function getval(id){
+        var giatri=document.getElementById(id).value;
+        return giatri;
+    }    
+    
+    function objinner(id){
+        var giatri=document.getElementById(id).innerHTML;
+        return giatri;
+    }
+    
+    function getobj(id){
+        var giatri=document.getElementById(id);
+        return giatri;
+    }
+    
+    getobj('tinhthanh').innerHTML=opt;
+    
+    </script>
+  </body>
+</html>

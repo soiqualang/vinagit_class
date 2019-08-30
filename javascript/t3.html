@@ -1,0 +1,55 @@
+<html>
+  <head>
+    <title>Javascript</title>
+    <script type="text/javascript">
+        function congchuoi(val){
+            getobj('bieuthuc').value=val;
+        }
+
+    </script>
+  </head>
+  <body>
+    <h1>Javascript</h1>
+    <form>
+        <input type="text" id="bieuthuc" value="">
+        <hr>
+        <table>
+        <tr>
+            <td>
+                <input type="button" value="7" onclick="congchuoi(this.value)">
+            </td>
+            <td>
+                <input type="button" value="8" onclick="congchuoi(this.value)">
+            </td>
+            <td>
+                <input type="button" value="9" onclick="congchuoi(this.value)">
+            </td>
+        </tr>
+        </table>
+        <br><br><br>
+        <input type="button" value="Kiem tra" onclick="kiemtra(getval('num'));"><br>
+    </form>
+    
+    
+    <script>
+    
+    function getval(id){
+        var giatri=document.getElementById(id).value;
+        return giatri;
+    }    
+    
+    function objinner(id){
+        var giatri=document.getElementById(id).innerHTML;
+        return giatri;
+    }
+    
+    function getobj(id){
+        var giatri=document.getElementById(id);
+        return giatri;
+    }
+    
+    
+    
+    </script>
+  </body>
+</html>
