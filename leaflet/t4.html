@@ -58,6 +58,16 @@
         //map.addLayer(mapboxlayer);
         
         var vinagit_wms='http://dev.dothanhlong.org:8080/geoserver/atlas_vietnam/wms?';
+		
+		var vn_tinh_hsts = L.tileLayer.wms(vinagit_wms, {
+            layers: 'atlas_vietnam:1vn_tinh_hsts',
+            tiled: true,
+            format: 'image/png',
+            transparent: true,
+            //maxZoom: 14,
+            //minZoom: 0,
+            //continuousWorld: true
+        }).addTo(map);
         
         var longan_lua = L.tileLayer.wms(vinagit_wms, {
             layers: 'atlas_vietnam:longan_huyen',
