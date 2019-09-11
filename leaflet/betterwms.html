@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>WMS GetFeatureInfo</title>
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.css" />
+    <!--[if lte IE 8]>
+        <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.ie.css" />
+    <![endif]-->
+    
+    <script src="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.js"></script>
+    <style type="text/css">
+      html, body, #map {
+        margin: 0px;
+        height: 100%;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="lib/L.TileLayer.BetterWMS.js"></script>
+    <script>
+      var map = L.map('map', {
+        center: [10.7912802,106.0836726],
+        zoom: 13
+      });
+      
+      
+      var mbUrl = 'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw';
+        
+        var mapboxlayer=new L.TileLayer(
+            mbUrl,
+            {
+                id: 'mapbox.light',
+                attribution: 'Mapbox contributors'
+            }
+        );
+        
+        mapboxlayer.addTo(map);
+      
+      
+        var thuadat_wms='http://csdlman.cf:8080/geoserver/test/wms?';
+                        
+        var thuadat2 = L.tileLayer.betterWms(thuadat_wms, {
+            layers: 'test:thuadat2',
+            tiled: true,
+            format: 'image/png',
+            transparent: true,
+            //maxZoom: 14,
+            //minZoom: 0,
+            //continuousWorld: true
+        }).addTo(map);
+    </script>
+  </body>
+</html>
