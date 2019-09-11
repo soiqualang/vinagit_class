@@ -1,0 +1,86 @@
+<html>
+<head>
+<title>Hoc leaflet</title>
+    <link rel="stylesheet" href="lib/leaflet.css">    
+    <script src="lib/leaflet.js"></script>
+    <style>
+        #map{
+            height:500px;
+            width:800px;
+            background-color: #00800061;
+        }
+    </style>
+	<script>
+		function change_lyr(lyr_name){
+			if(lyr_name=='longan_lua'){
+				map.addLayer(longan_lua);
+			}
+		}
+	</script>
+</head>
+<body>
+	<select onchange="change_lyr(this.value);">
+		<option value="">-- Chon --</option>
+		<option value="longan_lua">longan_lua</option>
+		<option value="">longan_lua2222</option>
+	</select>
+	<hr>
+    <div id="map"></div>
+    <script>
+		//@10.8137252,106.0951335,9.75z
+        map = L.map('map', {
+            center: [10.8137252,106.0951335],
+            zoom: 10
+        });
+        
+        var osm_url='http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+        
+        var osmlayer=new L.TileLayer(
+            osm_url,
+            {
+                attribution: 'Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
+            }
+        );
+        
+        
+        
+        var mbUrl = 'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw';
+        
+        var mapboxlayer=new L.TileLayer(
+            mbUrl,
+            {
+                id: 'mapbox.light',
+                attribution: 'Mapbox contributors'
+            }
+        );
+        
+        mapboxlayer.addTo(map);        
+        //map.addLayer(mapboxlayer);
+        
+        var vinagit_wms='http://dev.dothanhlong.org:8080/geoserver/atlas_vietnam/wms?';
+		
+		var vn_tinh_hsts = L.tileLayer.wms(vinagit_wms, {
+            layers: 'atlas_vietnam:1vn_tinh_hsts',
+            tiled: true,
+            format: 'image/png',
+            transparent: true,
+            //maxZoom: 14,
+            //minZoom: 0,
+            //continuousWorld: true
+        }).addTo(map);
+        
+        var longan_lua = L.tileLayer.wms(vinagit_wms, {
+            layers: 'atlas_vietnam:longan_huyen',
+            tiled: true,
+            format: 'image/png',
+            transparent: true,
+            //maxZoom: 14,
+            //minZoom: 0,
+            //continuousWorld: true
+        });
+        
+        
+        
+    </script>
+</body>
+</html>
