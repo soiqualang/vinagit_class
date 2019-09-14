@@ -87,9 +87,15 @@ body {
 //tim kiem
 
 $("#btn_timkiem").click(function(){
-  $.ajax({url: "xulytimkiem.php", success: function(result){
-    $("#kq").html(result);
-  }});
+    
+    var shbando=$("#shbando").val();
+    var shthua=$("#shthua").val();
+    var tenchu=$("#tenchu").val();
+    console.log(shbando);
+    
+    $.ajax({url: "xulytimkiem.php?shbando="+shbando+"&shthua="+shthua+"&tenchu="+tenchu, success: function(result){
+        $("#kq").html(result);
+    }});
 });
 
 
