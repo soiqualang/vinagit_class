@@ -8,7 +8,7 @@
         <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.ie.css" />
     <![endif]-->
     
-    <script src="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.js"></script>
+    <script src="lib/leaflet.js"></script>
     <style type="text/css">
       html, body, #map {
         margin: 0px;
@@ -24,24 +24,41 @@
 	<script src="lib/leaflet.ajax.min.js"></script>
     <script src="lib/L.TileLayer.BetterWMS_v2.js"></script>
     <script>
-	
+  
+  /*
 	function reload_geojson_lyr(map,url){
 		if(geojsonLayer==null){
 			geojsonLayer = new L.GeoJSON.AJAX(url);
 			geojsonLayer.addTo(map);
 			//console.log(geojsonLayer.getBounds().toBBoxString());
 			//map.fitBounds(geojsonLayer.getBounds().toBBoxString());
-			//console.log(geojsonLayer.bounds_calculated().toBBoxString());
+      //console.log(geojsonLayer.bounds_calculated().toBBoxString());
+      //map.fitBounds(geojsonLayer.getBounds());
+      //console.log(geojsonLayer.getBounds());
 		}else{
 			geojsonLayer.refresh(url);
 			if(!map.hasLayer(geojsonLayer)){
 				geojsonLayer.addTo(map);
 				//map.fitBounds(geojsonLayer.getBounds().toBBoxString());
 				//console.log(geojsonLayer.getBounds().toBBoxString());
-				//console.log(geojsonLayer.bounds_calculated().toBBoxString());
+        //console.log(geojsonLayer.bounds_calculated().toBBoxString());
+        //map.fitBounds(geojsonLayer.getBounds());
+        //console.log(geojsonLayer.getBounds());
 			}
 		}
-	}
+  }
+  */
+  function reload_geojson_lyr(map,url){
+    geojsonLayer.refresh(url);
+    geojsonLayer.on('data:loaded', function () {
+      map.fitBounds(geojsonLayer.getBounds());
+    });
+    /*
+    L.Util.ajax(url).then(function(data){
+      map.fitBounds(geojsonLayer.getBounds());
+    });
+    */
+  }
 	
 	$(".leaflet-popup-close-button").on('click', function(event){
 		//map.removeLayer(geojsonLayer);
@@ -97,7 +114,8 @@
 				'fillColor': 'blue'
 			});            
 			
-		});
+    });
+    geojsonLayer.addTo(map);
 		
 		
 		
@@ -107,7 +125,14 @@
 		url='proxy.php?url='+encodeURIComponent(url);
 		var geojsonLayer = new L.GeoJSON.AJAX(url);
 		geojsonLayer.addTo(map);
-		*/
+    */
+    
+    var jsondata={"type":"FeatureCollection","features":[{"type":"Feature","id":"thuadat2.3690","geometry":{"type":"MultiPolygon","coordinates":[[[[106.08127563,10.7775767],[106.08064681,10.78114694],[106.08289589,10.78132084],[106.08391619,10.78145354],[106.08376703,10.78160671],[106.08410183,10.78203388],[106.08482989,10.7815169],[106.08482967,10.78145649],[106.08460594,10.78114296],[106.08449086,10.78115955],[106.08444599,10.78106765],[106.08461191,10.78091913],[106.08455352,10.78057707],[106.0846186,10.78069404],[106.08466716,10.78089687],[106.08478789,10.78082121],[106.08476199,10.78061188],[106.08483803,10.78077845],[106.08518234,10.78061746],[106.08449337,10.78109461],[106.08451857,10.781107],[106.08464976,10.78111893],[106.08489336,10.78143927],[106.08525557,10.78124802],[106.08542752,10.78112498],[106.08571401,10.78083108],[106.08569565,10.7807371],[106.08576565,10.78072085],[106.08583064,10.78081286],[106.08592021,10.7807469],[106.08614995,10.78066977],[106.08624117,10.78057893],[106.08633822,10.78058393],[106.08679875,10.78026636],[106.08685826,10.78030875],[106.08700886,10.78024962],[106.08750988,10.77984981],[106.08752471,10.77959737],[106.08738395,10.77934088],[106.08728443,10.77938789],[106.08707604,10.77904039],[106.08696616,10.77900261],[106.08688722,10.7788205],[106.08669057,10.77858635],[106.08584584,10.77770522],[106.0853629,10.77712945],[106.0852504,10.77694745],[106.08380144,10.77522294],[106.08309962,10.77440739],[106.08306638,10.77449595],[106.08301336,10.77452932],[106.08300214,10.77451272],[106.08305191,10.77433847],[106.08256864,10.77366603],[106.08229641,10.77339073],[106.08209542,10.77347435],[106.08203352,10.77337781],[106.08225674,10.77324447],[106.08171276,10.77224264],[106.08133487,10.77175475],[106.0809568,10.7710861],[106.0808866,10.77109629],[106.08063671,10.77121345],[106.08074909,10.77141434],[106.08065874,10.77146729],[106.08075953,10.77164906],[106.08072399,10.7717113],[106.08078518,10.77186707],[106.08084205,10.77191489],[106.08085347,10.7721411],[106.08090402,10.77236482],[106.08077887,10.77291677],[106.08154212,10.77752269],[106.08127563,10.7775767]]]]},"geometry_name":"geom","properties":{"id":3903,"thuaid":9.0530001E7,"xaid":7011709,"shbando":53,"shthua":1,"dientich":424135.2,"khloaidat":"Q","tenchu":"nông trường dừa","diachi":"Âp Ông Nhiêu","kh2003":"CLN","diadanh":null,"img_path":null}}],"totalFeatures":"unknown","numberReturned":1,"timeStamp":"2019-09-14T10:09:00.053Z","crs":{"type":"name","properties":{"name":"urn:ogc:def:crs:EPSG::4326"}}};
+
+    testjson=new L.GeoJSON(jsondata);
+    testjson.addTo(map);
+    map.fitBounds(testjson.getBounds());
+    console.log(testjson.getBounds());
     </script>
   </body>
 </html>
