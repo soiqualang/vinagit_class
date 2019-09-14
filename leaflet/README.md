@@ -9,6 +9,10 @@ https://dothanhlong.org/OpenLayers3-Leaflte-Cookbook/leaflet/README.html
 
 
 ```sql
+--get geojson
+SELECT ST_AsGeoJSON(geom) from thuadat2 where id=3903;
+
+--get all attribute
 select row_to_json(fc)
 from (
     select
