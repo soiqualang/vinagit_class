@@ -16,11 +16,12 @@ L.TileLayer.BetterWMS = L.TileLayer.WMS.extend({
   
   getFeatureInfo: function (evt) {
     // Make an AJAX request to the server and hope for the best
-    var url = this.getFeatureInfoUrl(evt.latlng),
+    url = this.getFeatureInfoUrl(evt.latlng),
         showResults = L.Util.bind(this.showGetFeatureInfo, this);
+	url='proxy.php?url='+encodeURIComponent(url);
     $.ajax({
       //url: url,
-        url: 'proxy.php?url='+encodeURIComponent(url),
+        url: url,
       success: function (data, status, xhr) {
         var err = typeof data === 'string' ? null : data;
         showResults(err, evt.latlng, data);
@@ -87,6 +88,8 @@ L.TileLayer.BetterWMS = L.TileLayer.WMS.extend({
 	if(img_path!=null){
 		noidung+='<img src="'+img_path+'" width="300px">';
 	}
+	
+	geojsonLayer.refresh(url);
     
     // Otherwise show the content in a popup, or something.
     L.popup({ maxWidth: 800})

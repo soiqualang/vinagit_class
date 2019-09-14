@@ -8,7 +8,7 @@
         <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.ie.css" />
     <![endif]-->
     
-    <script src="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.js"></script>
+    <script src="lib/leaflet.js"></script>
     <style type="text/css">
       html, body, #map {
         margin: 0px;
@@ -20,8 +20,9 @@
   <body>
     <div id="map"></div>
     
-    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-    <script src="lib/L.TileLayer.BetterWMS.js"></script>
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>	
+	<script src="lib/leaflet.ajax.min.js"></script>
+    <script src="lib/L.TileLayer.BetterWMS_geojson.js"></script>
     <script>
       var map = L.map('map', {
         center: [10.7912802,106.0836726],
@@ -53,6 +54,39 @@
             //minZoom: 0,
             //continuousWorld: true
         }).addTo(map);
+		
+		var myLines = [{
+			"type": "LineString",
+			"coordinates": [[-100, 40], [-105, 45], [-110, 55]]
+		}, {
+			"type": "LineString",
+			"coordinates": [[-105, 40], [-110, 45], [-115, 55]]
+		}];
+
+		var myStyle = {
+			"color": "red",
+			"weight": 5,
+			"opacity": 0.65
+		};
+		
+		/* tam biet nuoc My
+		L.geoJSON(myLines, {
+			style: myStyle
+		}).addTo(map);
+		*/
+		
+		/*
+		var url='http://localhost/vinagit_class/leaflet/proxy.php?url=http%3A%2F%2Fcsdlman.cf%3A8080%2Fgeoserver%2Ftest%2Fwms%3F%26REQUEST%3DGetFeatureInfo%26SERVICE%3DWMS%26SRS%3DEPSG%253A4326%26STYLES%3D%26TRANSPARENT%3Dtrue%26VERSION%3D1.1.1%26FORMAT%3Dimage%252Fpng%26BBOX%3D106.06608867645265%252C10.769103882064917%252C106.09149456024171%252C10.795410276461798%26HEIGHT%3D624%26WIDTH%3D592%26LAYERS%3Dtest%253Athuadat2%26QUERY_LAYERS%3Dtest%253Athuadat2%26INFO_FORMAT%3Dapplication%252Fjson%26X%3D396%26Y%3D385';
+		var geojsonLayer = new L.GeoJSON.AJAX(url, {
+			style: myStyle
+		});
+		geojsonLayer.addTo(map);
+		*/
+		
+		geojsonLayer = new L.GeoJSON.AJAX(null, {
+			style: myStyle
+		});
+		geojsonLayer.addTo(map);
     </script>
   </body>
 </html>
