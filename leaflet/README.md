@@ -7,6 +7,15 @@ https://leafletjs.com/
 
 https://dothanhlong.org/OpenLayers3-Leaflte-Cookbook/leaflet/README.html
 
+## Zoom to layer
+```js
+function reload_geojson_lyr(map,url){
+    geojsonLayer.refresh(url);
+    geojsonLayer.on('data:loaded', function () {
+      map.fitBounds(geojsonLayer.getBounds());
+    });
+  }
+  ```
 
 ```sql
 --get geojson
